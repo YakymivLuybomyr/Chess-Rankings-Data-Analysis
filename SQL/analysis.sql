@@ -9,7 +9,7 @@ GROUP BY country
 ORDER BY players_count DESC
 LIMIT 10
 
-  
+-------------------------------------------------------------------------------------------------------------  
 
 Player Distribution by Rating Categories
 How many players fall into these rating ranges: <1000, 1000-1500, 1500-2000, 2000-2500, 2500+?
