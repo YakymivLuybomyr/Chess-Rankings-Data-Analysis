@@ -1,1 +1,152 @@
+Chess Analytics Dashboard Suite
+A Power BI project analyzing FIDE-ranked chess players, federations, and performance metrics.
 
+1. Chess World Map: Federation Strength
+Measures:
+
+Total Players = COUNTROWS('Chess FIDE Rankings')
+Column: federation
+
+Purpose:
+Visualizes the geographic distribution of top chess talent, highlighting the 10 countries with the highest number of elite players.
+
+Key Questions Answered:
+
+1.Which countries dominate competitive chess in terms of player volume?
+2.How is chess talent distributed globally?
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+2. Elite Chess Nations: Average Rating of Top 5 Players
+Measures:
+
+Top5 Average Rating (DAX formula calculating average ELO of a federation’s top 5 players)
+Column: federation
+
+Purpose:
+Ranks countries by the average strength of their top 5 players, identifying federations with concentrated elite talent.
+
+Key Questions Answered:
+
+1.Which nations have the strongest "peak" player performance?
+2.Is chess excellence clustered in specific regions?
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Top 5 Chess Nations by Average Rating (All Players)
+Measures:
+
+Average Rating = AVERAGE('Chess FIDE Rankings'[ELO])
+Column: federation
+
+Purpose:
+Compares overall player strength across federations, including all skill levels.
+
+Key Questions Answered:
+
+1.Which countries have the deepest talent pools?
+2.How does average player strength correlate with top-tier performance?
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. Top 5 Chess Nations by Player Activity Rate
+Measures:
+
+Average Games Played = AVERAGE('Chess FIDE Rankings'[games])
+Column: federation
+
+Purpose:
+Identifies the most active chess federations based on average games per player.
+
+Key Questions Answered:
+
+1.Do players from certain countries compete more frequently?
+2.Is there a link between activity and competitive success?
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. Chess Power Ranking: Players by Strength
+Columns: name, ELO, federation (sorted by ELO descending)
+
+Purpose:
+A leaderboard of individual players ranked by ELO rating.
+
+Key Questions Answered:
+
+1.Who are the current strongest players globally?
+2.Which federations produce the most top-ranked individuals?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. Chess Activity Leaderboard: Most Active Players
+Columns: name, games, federation (sorted by games descending)
+
+Purpose:
+Highlights players with the highest tournament participation.
+
+Key Questions Answered:
+
+1.Who are the "workhorses" of competitive chess?
+2.Does high activity correlate with high ratings?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7. Youngest Player Spotlight
+Measure:
+
+Youngest Player (identifies by MAX birth year)
+
+Purpose:
+Flags emerging talents and prodigies in competitive chess.
+
+Key Question Answered:
+
+Who represents the next generation of chess elites?
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8. Oldest Player Spotlight
+Measure:
+
+Oldest Player (identifies by MIN birth year + filters for active top-rated)
+
+Purpose:
+Recognizes longevity and sustained excellence in chess.
+
+Key Question Answered:
+
+Can players maintain elite performance at older ages?
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9. GM Census: All Players
+Measure:
+
+GM Count = CALCULATE(COUNTROWS(), [title] = "GM")
+
+Purpose:
+Quantifies the global distribution of Grandmaster titles.
+
+Key Questions Answered:
+
+1.Which countries produce the most GMs?
+2.Is the GM title becoming more common over time?
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+10. Chess Nations: Games vs Rating Correlation
+Measures:
+
+Player Efficiency = AVERAGE(ELO) / AVERAGE(games)
+
+Average Rating = AVERAGE('Chess FIDE Rankings'[ELO])
+
+Columns: federation, games
+
+Purpose:
+Investigates whether more games translate to higher ratings at a national level.
+
+Key Questions Answered:
+
+1.Is there an optimal "activity level" for competitive success?
+2.Do some countries achieve high ratings with relatively few games?
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Project Value
+These dashboards collectively reveal:
+
+-Geographic trends in chess development
+-Training effectiveness across federations
+-Player career patterns (activity vs. performance)
+-Emerging vs. established talent pipelines
