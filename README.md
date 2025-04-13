@@ -2,7 +2,7 @@
 Visualizing the Global Chess Landscape Through Data
 
 🌍 World Chess Power Map
-![Image alt](https://github.com/Chess-Rankings-Data-Analysis/blob/main/DATA/scr.chess%20dashboard%201.png)
+![Image alt](https://github.com/YakymivLuybomyr/Chess-Rankings-Data-Analysis/blob/main/DATA/scr.chess%20dashboard%201.png)
 
 Why This Matters:
 Identifies talent clusters - See which countries produce the most elite players
