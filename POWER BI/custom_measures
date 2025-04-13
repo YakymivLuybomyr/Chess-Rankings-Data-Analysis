@@ -1,1 +1,75 @@
+1. Total Players
+= COUNTROWS('Chess FIDE Rankings')
+Purpose: Counts total number of players in the dataset
+-----------------------------------------------------------------------------------------------------------
 
+2. Player Age
+= YEAR(TODAY()) - SELECTEDVALUE('Chess FIDE Rankings'[birth_year])
+Purpose: Calculates current age of players
+-----------------------------------------------------------------------------------------------------------
+
+3. Player Efficiency 
+VAR AvgRating = AVERAGE('Chess FIDE Rankings'[ELO ])
+VAR AvgGames = AVERAGE('Chess FIDE Rankings'[games])
+RETURN
+    IF(
+        ISBLANK(AvgGames) || AvgGames = 0,
+        BLANK(),
+        AvgRating / AvgGames
+    )
+Purpose: Measures rating efficiency per game (higher = better performance per game)
+-----------------------------------------------------------------------------------------------------------
+
+4. GM Count
+CALCULATE(
+    COUNTROWS('Chess FIDE Rankings'),
+    'Chess FIDE Rankings'[title] = "GM"
+)
+Purpose: Counts total Grandmasters in data
+-----------------------------------------------------------------------------------------------------------
+
+5. Youngest Player
+VAR MinBirthYear = MAX('Chess FIDE Rankings'[birth_year])  // Найпізніший рік = наймолодший
+RETURN
+    CALCULATE(
+        SELECTEDVALUE('Chess FIDE Rankings'[name ]),
+        'Chess FIDE Rankings'[birth_year] = MinBirthYear
+    )
+Purpose: Identifies the youngest player by birth year
+----------------------------------------------------------------------------------------------------------
+
+6. Oldest Player
+VAR OldestYear = [Найстарший рік]
+VAR OldestPlayers = 
+    FILTER(
+        'Chess FIDE Rankings',
+        'Chess FIDE Rankings'[birth_year] = OldestYear
+    )
+Purpose: Identifies the oldest active top-rated player
+-------------------------------------------------------------------------------------------------------------
+
+7. Top5 Average Rating
+VAR CountryPlayers = 
+    FILTER(
+        'Chess FIDE Rankings',
+        'Chess FIDE Rankings'[federation ] = SELECTEDVALUE('Chess FIDE Rankings'[federation ])
+    )
+VAR Top5Players = 
+    TOPN(
+        5,
+        CountryPlayers,
+        'Chess FIDE Rankings'[ELO ],
+        DESC
+    )
+RETURN
+    AVERAGEX(Top5Players, 'Chess FIDE Rankings'[ELO ])
+Purpose: Calculates average rating of a country's top 5 players
+------------------------------------------------------------------------------------------------------------------
+
+8. Average Rating
+= AVERAGE('Chess FIDE Rankings'[ELO])
+Purpose: Calculates overall average player rating
+------------------------------------------------------------------------------------------------------------------
+9. Average Games Played
+= AVERAGE('Chess FIDE Rankings'[games])
+Purpose: Measures average number of games per player
