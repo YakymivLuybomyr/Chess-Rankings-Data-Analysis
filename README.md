@@ -1,4 +1,5 @@
 ♟️ Chess Rankings Data Analysis
+
 Global Chess Landscape Through Dashboard Visualizations
 📌 Project Overview
 This repository presents an in-depth analysis of global chess rankings and player statistics through interactive dashboards. These visualizations reveal insights into:
